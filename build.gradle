@@ -1,7 +1,7 @@
 buildscript {
     ext {
         room_version = "2.4.3"
-        kotlin_version = "1.6.0"
+        kotlin_version = "1.7.21"
         compose_version = '1.4.0-alpha02'
         navVersion = "2.3.5"
     }
