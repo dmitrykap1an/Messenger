@@ -12,10 +12,11 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.JetMessenger">
         <activity
-            android:name=".ui.MainActivity"
+            android:name="com.messenger.ui.MainActivity"
             android:label="@string/app_name"
-            android:theme="@style/Theme.JetMessenger.NoActionBar"
-            android:windowSoftInputMode="adjustResize">
+            android:theme="@style/Theme.Kittygram.NoActionBar"
+            android:windowSoftInputMode="adjustResize"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
