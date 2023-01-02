@@ -44,17 +44,18 @@ fun Routing.Main.Content(
 fun MainView(
     onChatClick: (user: User) -> Unit,
     onSearchClick:  () -> Unit,
+    UsersList: List<User>
 ) {
     Column(){
         TopRowView(onSearchClick)
-        ChatListView(onChatClick = onChatClick, kittensList = kittens)
+        ChatListView(onChatClick = onChatClick, UsersList = UsersList)
     }
 }
 
 @Composable
 fun ChatListView(
     onChatClick: (user: User) -> Unit,
-    kittensList: List<User>
+    UsersList: List<User>
 ){
     LazyColumn(
         modifier = Modifier
@@ -62,9 +63,9 @@ fun ChatListView(
             .background(color = backgroundColor)
     ){
         itemsIndexed(
-            kittens
-        ){ index, kitten ->
-            UserBar(kitten = kitten)
+            UsersList
+        ){ index, User ->
+            UserBar(user = User)
         }
     }
 }
@@ -72,14 +73,14 @@ fun ChatListView(
 
 
 @Composable
-fun UserBar(kitten: User) {
+fun UserBar(user: User) {
     Box(
         modifier = Modifier
             .fillMaxSize()
             .background(color = Color.White)
     ){
         Text(
-            text = "kitten.id",
+            text = "${user.id}",
             fontSize = 25.sp,
             color = Color.White,
             modifier = Modifier
@@ -97,7 +98,6 @@ fun UserBar(kitten: User) {
 @Preview
 @Composable
 fun MainPrev() {
-    MainView(onChatClick = {}) {
-    }
+    MainView(onChatClick = {}, onSearchClick = {}, UsersList = kittens)
 }
 
