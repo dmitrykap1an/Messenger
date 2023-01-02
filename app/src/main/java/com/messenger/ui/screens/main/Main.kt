@@ -5,6 +5,7 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.lazy.itemsIndexed
 //import androidx.compose.foundation.layout.RowScopeInstance.weight
 import androidx.compose.material.Button
 import androidx.compose.material.ButtonDefaults
@@ -22,6 +23,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.ViewModel
+import com.messenger.data.models.Name
 import com.messenger.data.models.User
 import com.messenger.ui.screens.Routing
 import com.messenger.ui.theme.backgroundColor
@@ -36,6 +38,7 @@ fun Routing.Main.Content(
 
 }
 
+// TODO: в TopRowView добавить Box и отцентровать текст
 
 @Composable
 fun MainView(
@@ -48,10 +51,6 @@ fun MainView(
     }
 }
 
-
-
-
-
 @Composable
 fun ChatListView(
     onChatClick: (user: User) -> Unit,
@@ -62,17 +61,14 @@ fun ChatListView(
             .fillMaxSize()
             .background(color = backgroundColor)
     ){
-        item{ Text(
-            text = "хуйня ебаная",
-            color = Color.White,
-            fontSize = 25.sp
-        ) }
-
-        items(kittensList) { kitten ->
+        itemsIndexed(
+            kittens
+        ){ index, kitten ->
             UserBar(kitten = kitten)
         }
     }
 }
+
 
 
 @Composable

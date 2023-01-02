@@ -35,7 +35,8 @@ fun TopRowView(
             modifier = Modifier
                 .weight(3f)
                 .background(color = Color.Transparent)
-                .padding(horizontal = 15.dp)
+                .padding(horizontal = 15.dp),
+
         )
 
         Button(
