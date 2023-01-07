@@ -40,6 +40,7 @@ fun Routing.Authorization.Content(
         verticalArrangement = Arrangement.Center
     ) {
 
+
         Box(
             modifier = Modifier
                 .fillMaxSize()
