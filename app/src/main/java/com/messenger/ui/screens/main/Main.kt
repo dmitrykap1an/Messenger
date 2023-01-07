@@ -22,8 +22,13 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.em
 import androidx.compose.ui.unit.sp
+import androidx.core.os.bundleOf
 import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.navigation.NavController
+import androidx.navigation.compose.rememberNavController
 import com.messenger.data.models.User
+import com.messenger.navigation.navigate
+import com.messenger.navigation.navigateModel
 import com.messenger.ui.screens.Routing
 import com.messenger.ui.theme.backgroundColor
 import com.messenger.ui.theme.messageBarBackgroundColor
@@ -31,20 +36,20 @@ import com.messenger.viewmodels.UserViewModel
 
 @Composable
 fun Routing.Main.Content(
+    navController: NavController,
     userViewModel: UserViewModel,
-    onChatClick: (user: User) -> Unit,
     onSearchClick: () -> Unit,
 ) {
     Column() {
         TopRowView(onSearchClick)
-        ChatListView(onChatClick = onChatClick, usersList = kittens)
+        ChatListView(usersList = kittens, navController = navController)
     }
 }
 
 @Composable
 fun ChatListView(
-    onChatClick: (user: User) -> Unit,
-    usersList: List<User>
+    usersList: List<User>,
+    navController: NavController
 ) {
     LazyColumn(
         modifier = Modifier
@@ -53,7 +58,7 @@ fun ChatListView(
     ) {
         for (user in usersList) {
             item {
-                ChatBar(user = user, onChatClick)
+                ChatBar(user = user, navController = navController)
             }
         }
     }
@@ -61,7 +66,7 @@ fun ChatListView(
 
 
 @Composable
-fun ChatBar(user: User, onChatClick: (user: User) -> Unit) {
+fun ChatBar(user: User, navController: NavController) {
 
     Card(
         modifier = Modifier
@@ -71,7 +76,11 @@ fun ChatBar(user: User, onChatClick: (user: User) -> Unit) {
         elevation = 5.dp,
     ) {
         Box(
-            Modifier.background(color = messageBarBackgroundColor).clickable(onClick = { onChatClick(user) })
+            Modifier
+                .background(color = messageBarBackgroundColor)
+                .clickable(onClick = {
+                    navController.navigate(Routing.Direct.route, bundleOf("KEY" to user))
+                })
         ) {
             Row(
                 verticalAlignment = Alignment.CenterVertically
@@ -109,6 +118,10 @@ fun ChatBar(user: User, onChatClick: (user: User) -> Unit) {
 @Preview
 @Composable
 fun MainContentPreview() {
-    Routing.Main.Content(onChatClick = {}, onSearchClick = {}, userViewModel = viewModel())
+    Routing.Main.Content(
+        navController = rememberNavController(),
+        onSearchClick = {},
+        userViewModel = viewModel()
+    )
 }
 
