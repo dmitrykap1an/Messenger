@@ -14,41 +14,43 @@ import com.messenger.ui.screens.search.Content
 import com.messenger.viewmodels.UserViewModel
 
 @Composable
-fun Root(){
+fun Root() {
 
     val navController = rememberNavController()
     val userViewModel: UserViewModel = viewModel()
     // TODO: Добавить ViewModel пользователя
 
-    NavHost(navController = navController, startDestination = Routing.Authorization.route){
-        composable(route = Routing.Greeting.route){
+    NavHost(navController = navController, startDestination = Routing.Authorization.route) {
+        composable(route = Routing.Greeting.route) {
             Routing.Greeting.Content()
         }
 
-        composable(route = Routing.Authorization.route){
-            Routing.Authorization.Content()
-        }
-
-        composable(route = Routing.Main.route){
-            Routing.Main.Content(
-                userViewModel = userViewModel,
-                onChatClick = { navController.navigate(Routing.Direct.route) },
-                onSearchClick = {navController.navigate(Routing.Search.route)}
+        composable(route = Routing.Authorization.route) {
+            Routing.Authorization.Content(
+                onLoginClick = { navController.navigate(Routing.Main.route) }
             )
         }
 
-        composable(route = Routing.Account.route){
+        composable(route = Routing.Main.route) {
+            Routing.Main.Content(
+                userViewModel = userViewModel,
+                onChatClick = { navController.navigate(Routing.Direct.route) },
+                onSearchClick = { navController.navigate(Routing.Search.route) }
+            )
+        }
+
+        composable(route = Routing.Account.route) {
             Routing.Account.Content(
 
             )
         }
 
-        composable(route = Routing.Direct.route){
+        composable(route = Routing.Direct.route) {
             Routing.Direct.Content(
 
             )
         }
-        composable(route = Routing.Search.route){
+        composable(route = Routing.Search.route) {
             Routing.Search.Content(
 
             )
