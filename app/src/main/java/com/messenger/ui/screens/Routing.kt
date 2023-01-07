@@ -7,28 +7,12 @@ import androidx.compose.ui.graphics.vector.ImageVector
 
 sealed class Routing(val route: String, val label: String){
 
-    object Main: Routing("main", "Main"){
-
-        val bottomNavRouting = listOf(BottomNav.Chats)
-
-        sealed class BottomNav(
-            val route: String,
-            val label: String,
-            val icon: ImageVector,
-            val actions: List<ToolbarAction>
-        ){
-            object Chats: BottomNav(
-                route = "chats",
-                label= "Chats",
-                icon = Icons.Rounded.Chat,
-                actions = listOf(ToolbarAction.NewMessage)
-            )
-        }
-    }
+    object Main: Routing("main", "Main")
     object Search: Routing("search", "Search")
     object Direct: Routing("direct", "Direct")
     object Account: Routing("account", "Account")
     object Greeting: Routing("greeting", "Greeting")
+    object Authorization: Routing("authorization", "Authorization")
 }
 
 sealed class ToolbarAction(val icon: ImageVector) {

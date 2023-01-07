@@ -1,4 +1,4 @@
-package com.messenger.ui.screens.convesation
+package com.messenger.ui.screens.direct
 
 import androidx.compose.ui.graphics.Color
 import com.se7en.messenger.R

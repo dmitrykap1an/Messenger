@@ -2,7 +2,6 @@ package com.messenger.ui
 
 import androidx.compose.runtime.Composable
 import androidx.lifecycle.viewmodel.compose.viewModel
-import androidx.lifecycle.viewmodel.viewModelFactory
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
@@ -21,12 +20,15 @@ fun Root(){
     val userViewModel: UserViewModel = viewModel()
     // TODO: Добавить ViewModel пользователя
 
-    NavHost(navController = navController, startDestination = Routing.Main.route){
+    NavHost(navController = navController, startDestination = Routing.Authorization.route){
         composable(route = Routing.Greeting.route){
-            Routing.Greeting.Content(
-
-            )
+            Routing.Greeting.Content()
         }
+
+        composable(route = Routing.Authorization.route){
+            Routing.Authorization.Content()
+        }
+
         composable(route = Routing.Main.route){
             Routing.Main.Content(
                 userViewModel = userViewModel,
