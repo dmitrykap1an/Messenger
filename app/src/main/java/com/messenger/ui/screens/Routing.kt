@@ -9,7 +9,7 @@ sealed class Routing(val route: String, val label: String){
 
     object Main: Routing("main", "Main"){
 
-        val bottomNavRoutings = listOf(BottomNav.Chats)
+        val bottomNavRouting = listOf(BottomNav.Chats)
 
         sealed class BottomNav(
             val route: String,

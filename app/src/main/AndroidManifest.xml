@@ -10,9 +10,9 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.JetMessenger">
+        android:theme="@style/Theme.Kittygram.NoActionBar">
         <activity
-            android:name="com.messenger.ui.MainActivity"
+            android:name="com.messenger.MainActivity"
             android:label="@string/app_name"
             android:theme="@style/Theme.Kittygram.NoActionBar"
             android:windowSoftInputMode="adjustResize"

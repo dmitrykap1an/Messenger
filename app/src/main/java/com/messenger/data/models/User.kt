@@ -5,8 +5,10 @@ import com.se7en.messenger.R
 
 data class User(
     val id: String,
+    val nickname: String,
     val name: Name,
-    val picture: Int? = R.drawable.alien // TODO: сделать аватарку пользователя подэфолту
+    val lastMessage: String,
+    val picture: Int? = R.drawable.pupin // TODO: сделать аватарку пользователя подэфолту
 )
 
 data class Name(

@@ -3,5 +3,6 @@ package com.messenger.ui.theme
 import androidx.compose.ui.graphics.Color
 
 
-val backgroundColor = Color(22, 28, 43)
+val backgroundColor = Color(15, 25, 37)
+val messageBarBackgroundColor = Color(19, 27,37)
 
