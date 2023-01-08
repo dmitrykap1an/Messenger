@@ -1,8 +1,6 @@
 package com.messenger.ui.test
 
 import com.messenger.data.models.User
-import com.messenger.ui.screens.main.*
-import java.time.LocalDateTime
 
 
 data class Message(val user: User, val date: String, val message: String)

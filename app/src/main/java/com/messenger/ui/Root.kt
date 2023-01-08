@@ -35,7 +35,9 @@ fun Root() {
         }
 
         composable(route = Routing.Authorization.route) {
-            Routing.Authorization.Content()
+            Routing.Authorization.Content(
+                onLoginClick = {navController.navigate(Routing.Main.route)}
+            )
         }
 
         composable(route = Routing.Main.route) {
@@ -47,12 +49,16 @@ fun Root() {
         }
 
         composable(
-            route = Routing.Direct.route,
-        ) {
-            navController.previousBackStackEntry?.arguments?.getParcelable<User>( "KEY", User::class.java)?.let {
-                Routing.Direct.Content(user = it)
+            route = "${Routing.Direct.route}/{user}",
+            arguments = listOf(navArgument(name = "user"){
+                type = NavType.StringType
+                nullable = true
+            })
+        ) { backStackEntry ->
+            backStackEntry.arguments?.getString("user")?.let {
+                val user = Json.decodeFromString<User>(it)
+                Routing.Direct.Content(user = user)}
             }
-        }
 
         composable(route = Routing.Account.route) {
             Routing.Account.Content(

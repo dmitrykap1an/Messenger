@@ -16,23 +16,20 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.text.font.FontStyle
-import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.em
 import androidx.compose.ui.unit.sp
-import androidx.core.os.bundleOf
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.messenger.data.models.User
-import com.messenger.navigation.navigate
-import com.messenger.navigation.navigateModel
 import com.messenger.ui.screens.Routing
+import com.messenger.ui.test.kittens
 import com.messenger.ui.theme.backgroundColor
 import com.messenger.ui.theme.messageBarBackgroundColor
 import com.messenger.viewmodels.UserViewModel
+import kotlinx.serialization.json.Json
+import kotlinx.serialization.json.encodeToJsonElement
 
 @Composable
 fun Routing.Main.Content(
@@ -79,7 +76,8 @@ fun ChatBar(user: User, navController: NavController) {
             Modifier
                 .background(color = messageBarBackgroundColor)
                 .clickable(onClick = {
-                    navController.navigate(Routing.Direct.route, bundleOf("KEY" to user))
+                    val json = Json.encodeToJsonElement(user)
+                    navController.navigate("${Routing.Direct.route}/${json}")
                 })
         ) {
             Row(
